@@ -25,14 +25,11 @@ architecture impl of wordrot is
 			when "00" =>
 				OUTPUT <=	WORD;
 			when "01" =>
-				OUTPUT(31 downto 8) <=	WORD(23 downto 0);
-				OUTPUT(7 downto 0) <=	WORD(31 downto 24);
+				OUTPUT <=	WORD(23 downto 0) & WORD(31 downto 24);
 			when "10" =>
-				OUTPUT(31 downto 16) <=	WORD(15 downto 0);
-				OUTPUT(15 downto 0) <=	WORD(31 downto 16);
+				OUTPUT <=	WORD(15 downto 0) & WORD(31 downto 16);
 			when "11" =>
-				OUTPUT(31 downto 24) <=	WORD(7 downto 0);
-				OUTPUT(23 downto 0) <=	WORD(31 downto 8);
+				OUTPUT <=	WORD(7 downto 0) & WORD(31 downto 8);
 			when others =>
 				OUTPUT <=	WORD;
 		end case;
