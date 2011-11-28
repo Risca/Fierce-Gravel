@@ -1,0 +1,131 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[swedish,english]{babel}
+\usepackage{chronology}
+\usepackage{tikz}
+\usetikzlibrary{snakes}
+
+\title{AES Encryption in FPGA hardware}
+\foreignlanguage{swedish}{
+\author{
+        Patrik Dahlström \\
+        Electronic design\\
+            \and
+        Daniel Josefsson\\
+        Electronic design\\
+            \and
+        Staffan Sjöqvist\\
+        Electronic design
+}
+}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+%\begin{abstract}
+%Some abstract
+%\end{abstract}
+
+\section{Introduction}
+AES encryption is a widely recognized standard encryption that is well used in many modern applications of today. It can be found not only in modern wireless network, but also in encryption devices designed for secure storage as well as in secure wired networks.
+
+It is this group's intention to learn how this encryption works and also how to implement it in FPGA hardware.
+
+\paragraph{Outline}
+The remainder of this document is organized as follows.
+Section~\ref{requirement classification} describes the different classes of requirement defined. The actual requirements are then found in Section~\ref{requirements}.
+Finally, Section~\ref{timeline} gives a preliminary time schedule.
+
+\section{Requirement Classification}\label{requirement classification}
+The requirements outlined in this document are divided in three classes:
+\subsection*{Class A}
+The requirements that fall under Class A are mandatory requirements that has to be met for the hardware implementation to be considered acceptable
+
+\subsection*{Class B}
+Requirements in this class are to be considered as desirable and should be implemented if time allows it.
+
+\subsection*{Class C}
+These requirements fall under the category "Extra" and have the lowest priority of all requirements.
+
+\section{Requirements}\label{requirements}
+As described above the requirements fall under three categories.
+
+\subsection*{Class A}
+For this project to be considered complete the FPGA must be able to
+\begin{itemize}
+\item encrypt a reference data set (from AES specification)
+\item decrypt a reference data set (from AES specification)
+\item accept data from a PC
+\item send encrypted/decrypted data to a PC
+\end{itemize}
+and the computer software must be able to
+\begin{itemize}
+\item send data to be encrypted/decrypted to the FPGA
+\item accept encrypted/decrypted data from the FPGA
+\item verify that the implemented AES algorithm produce the expected result
+\end{itemize}
+
+\subsection*{Class B}
+It is desirable for the FPGA hardware to be able to
+\begin{itemize}
+\item encrypt arbitrary data sets
+\item decrypt arbitrary data sets
+\item use various hardware design techniques to increase performance
+\end{itemize}
+and the computer software to be able to
+\begin{itemize}
+\item present encrypted/decrypted data in a primitive GUI
+\end{itemize}
+
+\subsection*{Class C}
+It should be considered as low priority for the FPGA hardware to be able to
+\begin{itemize}
+\item encrypt/decrypt data using a highly optimized algorithm
+\end{itemize}
+and the computer software to
+\begin{itemize}
+\item present encrypted/decrypted data in an intuitive and beautiful GUI
+\end{itemize}
+
+\section{Timeline}\label{timeline}
+%The timeline below is graded in number of weeks from project start
+
+\begin{figure}[h]
+\begin{chronology}[1]{-1}{7}{8ex}{\textwidth}
+\event{0}{Project start}
+\event[0]{2}{Basic theory}
+\event[2]{4}{Basic impl.}
+\event[4]{5}{Algorithm impr.}
+\event[5]{6}{Report writing}
+\event[6]{7}{Reserv time}
+%\event{\decimaldate{25}{12}{2001}}{three}
+\end{chronology}
+\caption{Project progress in weeks}
+\end{figure}
+
+%\begin{tikzpicture}[snake=zigzag, line before snake = 5mm, line after snake = 5mm]
+%%draw horizontal line   
+%\draw (0,0) -- (2,0);
+%\draw[snake] (2,0) -- (4,0);
+%\draw (4,0) -- (5,0);
+%\draw[snake] (5,0) -- (7,0);
+%
+%%draw vertical lines
+%\foreach \x in {0,1,2,4,5,7}
+%   \draw (\x cm,3pt) -- (\x cm,-3pt);
+%
+%%draw nodes
+%\draw (0,0) node[below=3pt] {$ 0 $} node[above=3pt] {$   $};
+%\draw (1,0) node[below=3pt] {$ 1 $} node[above=3pt] {$ 10 $};
+%\draw (2,0) node[below=3pt] {$ 2 $} node[above=3pt] {$ 20 $};
+%\draw (3,0) node[below=3pt] {$  $} node[above=3pt] {$  $};
+%\draw (4,0) node[below=3pt] {$ 5 $} node[above=3pt] {$ 50 $};
+%\draw (5,0) node[below=3pt] {$ 6 $} node[above=3pt] {$ 60 $};
+%\draw (6,0) node[below=3pt] {$  $} node[above=3pt] {$  $};
+%\draw (7,0) node[below=3pt] {$ n $} node[above=3pt] {$ 10n $};
+%\end{tikzpicture}
+
+\end{document}
+  
