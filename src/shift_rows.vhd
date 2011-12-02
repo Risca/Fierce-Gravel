@@ -1,6 +1,6 @@
 -- Title:			wordrot_column
 -- Date:				2011-11-28
--- Author:			Patrik Dahlström
+-- Author:			Patrik Dahlstrm
 -- Description:	This component shifts the rows of a state array
 
 library ieee;
@@ -14,6 +14,14 @@ entity shift_rows is
 end entity;
 
 architecture impl of shift_rows is
+	component wordrot_column
+		port
+		(
+			WORD		:	in		column;
+			OUTPUT	:	out	column;
+			OFFSET	:	in		std_logic_vector(1 downto 0)
+		);
+	end component;
 begin
 	shift_rows: for i in 0 to 3 generate
 		u: wordrot_column PORT MAP (WORD => STATE(i),
