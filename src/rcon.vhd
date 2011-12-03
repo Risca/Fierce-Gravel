@@ -1,23 +1,20 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+use work.resources.all;
 -- Round constant process
 -- 2011-11-28
 -- Author:			Daniel Josefsson
 -- Description:	Returns the round constant.
 entity rcon is
-
-	port 
-	(
-		INPUT		:	in		std_logic_vector(3 downto 0);
-		OUTPUT	:	out	std_logic_vector(7 downto 0)
+	port(	INPUT		:	in		std_logic_vector(3 downto 0);
+			OUTPUT	:	out	byte
 	);
-
 end entity;
 
 architecture impl of rcon is
 
-	subtype rcon_subType is std_logic_vector(7 downto 0);
+	subtype rcon_subType is byte;
 	type rconROM_type is array (0 to 15) of rcon_subType;
   
 	constant rconROMTable : rconROM_type :=(
