@@ -9,11 +9,6 @@ package resources is
 	type column is array (3 downto 0) of byte;
 	-- To index state_array Foo: Foo(column)(byte)(bit);
 	type state_array is array (3 downto 0) of column;
-
-	component hex_2_7seg
-	port(	HEX		:	in		std_logic_vector(3 downto 0);
-			abcdefg	:	out	std_logic_vector(0 to 6));
-	end component hex_2_7seg;
 	
 	component add_round_key
 	port(	STATE		:	in		state_array;
@@ -32,6 +27,11 @@ package resources is
 			OUTPUT	:	out	state_array
 	);
 	end component;
+
+	component hex_2_7seg
+	port(	HEX		:	in		std_logic_vector(3 downto 0);
+			abcdefg	:	out	std_logic_vector(0 to 6));
+	end component hex_2_7seg;
 
 	-- Overloaded operators
 	function "xor" (L,R : byte) return byte;
