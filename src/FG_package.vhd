@@ -6,9 +6,9 @@ use ieee.numeric_std.all;
 package resources is
 	type byte is array (7 downto 0) of std_logic;
 	-- To index column Foo: Foo(byte)(bit);
-	type column is array (3 downto 0) of byte;
+	type column is array (0 to 3) of byte;
 	-- To index state_array Foo: Foo(column)(byte)(bit);
-	type state_array is array (3 downto 0) of column;
+	type state_array is array (0 to 3) of column;
 
 	component sbox
 	port(	INPUT		:	in		state_array;
