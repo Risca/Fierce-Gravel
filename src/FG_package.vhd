@@ -26,6 +26,12 @@ package resources is
 			OUTPUT	: out	state_array
 		);
 	end component;
+	
+	component sbox
+	port(	INPUT		:	in		state_array;
+			OUTPUT	:	out	state_array
+	);
+	end component;
 
 	-- Overloaded operators
 	function "xor" (L,R : byte) return byte;
