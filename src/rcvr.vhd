@@ -45,7 +45,7 @@ begin
 				bit_count:=bit_count+1;
 			elsif(bit_count = 10) then
 				--coupling data to receive buffer register for 8 data bits
-			   rbr <= to_byte(rsr(8 downto 1));
+			   rbr <= byte(rsr(8 downto 1));
 				--once the 10 bits are captured, the start_flag is reset
 				start_flag:=false;
 				--bit_count is reset to 0
