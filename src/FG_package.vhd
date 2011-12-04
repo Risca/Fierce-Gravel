@@ -42,7 +42,6 @@ package resources is
 	function "xor" (L,R : byte) return byte;
 	function "xor" (L,R : column) return column;
 	function "xor" (L,R : state_array) return state_array;
-	function to_integer (INPUT : byte) return integer;
 end package resources;
 
 library ieee;
@@ -76,10 +75,5 @@ package body resources is
 		result(1) := L(1) xor R(1);
 		result(0) := L(0) xor R(0);
 		return result;
-	end function;
-	
-	function to_integer (INPUT : byte) return integer is
-	begin
-		return to_integer(unsigned(to_std_logic_vector(INPUT)));
 	end function;
 end package body resources;
