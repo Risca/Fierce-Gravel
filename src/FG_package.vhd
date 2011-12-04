@@ -33,7 +33,10 @@ package body resources is
 	function "xor" (L,R : byte) return byte is
 		variable result : byte;
 	begin
-		return (L xor R);
+		for n in 7 downto 0 loop
+			result(n) := L(n) xor R(n);
+		end loop;
+		return result;
 	end function;
 
 	function "xor" (L,R : column) return column is
