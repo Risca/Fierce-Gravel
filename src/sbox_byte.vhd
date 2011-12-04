@@ -1,26 +1,21 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+use work.resources.all;
 -- Byte subsitution function by s-box transformation.
--- 2011-11-28
+-- 2011-12-04
 -- Author:	Daniel Josefsson
 -- Comment: The code for the s-box array was snitched from http://www.isaakian.com/VHDL/AES/
 --				due to laziness and to minimize typeos.
-entity sbox is
-
-	port 
-	(
-		INPUT		:	in		std_logic_vector(7 downto 0);
-		OUTPUT	:	out	std_logic_vector(7 downto 0)
+-- 			Modified by Patrik Dahlström to use byte
+entity sbox_byte is
+	port(	INPUT		:	in		byte;
+			OUTPUT	:	out	byte
 	);
-
 end entity;
 
-architecture impl of sbox is
-
-	subtype sboxBRAM_subType is std_logic_vector(7 downto 0);
-	type sboxROM_type is array (0 to 255) of sboxBRAM_subType;
-  
+architecture impl of sbox_byte is
+	type sboxROM_type is array (0 to 255) of byte;
 	constant sboxROMTable : sboxROM_type :=(
 	--   0      1      2      3      4      5      6      7      8      9      a      b      c      d      e      f 
 		x"63", x"7c", x"77", x"7b", x"f2", x"6b", x"6f", x"c5", x"30", x"01", x"67", x"2b", x"fe", x"d7", x"ab", x"76",   --00
@@ -44,7 +39,7 @@ architecture impl of sbox is
 	begin
 		sbox_lookup:process(INPUT)
 		begin
-			OUTPUT <= sboxROMTable(to_integer(unsigned(INPUT)));
+			OUTPUT <= sboxROMTable(to_integer(INPUT));
 		end process sbox_lookup;
 	
 end impl;
