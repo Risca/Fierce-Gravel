@@ -9,24 +9,29 @@ package resources is
 	type column is array (3 downto 0) of byte;
 	-- To index state_array Foo: Foo(column)(byte)(bit);
 	type state_array is array (3 downto 0) of column;
-	
-	component add_round_key
-	port(	STATE		:	in		state_array;
-			KEY		:	in		state_array;
-			OUTPUT	:	out	state_array);
-	end component add_round_key;
-	
-	component mix_columns
-	PORT (INPUT		: in	state_array;
-			OUTPUT	: out	state_array
-		);
-	end component;
-	
+
 	component sbox
 	port(	INPUT		:	in		state_array;
 			OUTPUT	:	out	state_array
 	);
 	end component;
+
+	component shift_rows
+		port(	STATE		:	in		state_array;
+				OUTPUT	:	out	state_array);
+	end component;
+
+	component mix_columns
+	PORT (INPUT		: in	state_array;
+			OUTPUT	: out	state_array
+		);
+	end component;
+
+	component add_round_key
+	port(	STATE		:	in		state_array;
+			KEY		:	in		state_array;
+			OUTPUT	:	out	state_array);
+	end component add_round_key;
 
 	component hex_2_7seg
 	port(	HEX		:	in		std_logic_vector(3 downto 0);
