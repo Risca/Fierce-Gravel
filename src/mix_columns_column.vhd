@@ -4,13 +4,13 @@ use ieee.std_logic_arith.all ;
 use ieee.std_logic_unsigned.all ;
 use work.resources.all;
 
-entity mix_columns is
+entity mix_columns_column is
 PORT (INPUT : in column;
 		OUTPUT : out column
 		);
-end mix_columns;
+end mix_columns_column;
 
-architecture Behavior of mix_columns is
+architecture Behavior of mix_columns_column is
 --		  0	  1     2     3		  C
 --		|"02"	"03"	"01"	"01"|		| C3 |
 --		|"01"	"02"	"03"	"01"| *	| C2 |
