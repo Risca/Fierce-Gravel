@@ -1,26 +1,11 @@
---    File Name:  txmit.vhd
---      Version:  1.1
---         Date:  January 22, 2000
---        Model:  Transmitter Chip
---
---      Company:  Xilinx
---
---
---   Disclaimer:  THESE DESIGNS ARE PROVIDED "AS IS" WITH NO WARRANTY 
---                WHATSOEVER AND XILINX SPECIFICALLY DISCLAIMS ANY 
---                IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR
---                A PARTICULAR PURPOSE, OR AGAINST INFRINGEMENT.
---
---                Copyright (c) 2000 Xilinx, Inc.
---                All rights reserved
-
 library ieee ;
 use ieee.std_logic_1164.all ;
 use ieee.std_logic_arith.all ;
+use work.resources.all ;
 
 entity txmit is
 port (clk,wrn : in std_logic ;
-	din : in std_logic_vector(7 downto 0) ;
+	din : in byte ;
 	tbre : out std_logic ;
 	sdo  : out std_logic 
 );
@@ -28,7 +13,7 @@ end txmit ;
 
 architecture v1 of txmit is
 constant baudrate : integer := 115200;
-signal tbr : std_logic_vector (7 downto 0) ;
+signal tbr : byte ;
 begin
 
 process (clk,wrn)
