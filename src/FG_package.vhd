@@ -43,7 +43,7 @@ package resources is
 	function "xor" (L,R : column) return column;
 	function "xor" (L,R : state_array) return state_array;
 	function to_std_logic_vector (INPUT : byte) return std_logic_vector;
-	function to_byte (INPUT : std_logic_vector) return byte;
+	function to_byte (INPUT : std_logic_vector(7 downto 0)) return byte;
 	function to_integer (INPUT : byte) return integer;
 end package resources;
 
@@ -85,7 +85,7 @@ package body resources is
 		return INPUT(7) & INPUT(6) & INPUT(5) & INPUT(4) & INPUT(3) & INPUT(2) & INPUT(1) & INPUT(0);
 	end function;
 	
-	function to_byte (INPUT : std_logic_vector) return byte is
+	function to_byte (INPUT : std_logic_vector(7 downto 0)) return byte is
 	begin
 		return (INPUT(7),INPUT(6),INPUT(5),INPUT(4),INPUT(3),INPUT(2),INPUT(1),INPUT(0));
 	end function;
