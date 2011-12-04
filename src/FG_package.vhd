@@ -19,11 +19,19 @@ package resources is
 			KEY		:	in		state_array;
 			OUTPUT	:	out	state_array);
 	end component add_round_key;
+	
+	component mix_columns
+	PORT (INPUT		: in	state_array;
+			OUTPUT	: out	state_array
+		);
+	end component;
 
 	-- Overloaded operators
 	function "xor" (L,R : byte) return byte;
 	function "xor" (L,R : column) return column;
 	function "xor" (L,R : state_array) return state_array;
+	function to_std_logic_vector (INPUT : byte) return std_logic_vector;
+	function to_byte (INPUT : std_logic_vector) return byte;
 end package resources;
 
 library ieee;
@@ -57,5 +65,15 @@ package body resources is
 		result(1) := L(1) xor R(1);
 		result(0) := L(0) xor R(0);
 		return result;
+	end function;
+	
+	function to_std_logic_vector(INPUT : byte) return std_logic_vector is
+	begin
+		return INPUT(7) & INPUT(6) & INPUT(5) & INPUT(4) & INPUT(3) & INPUT(2) & INPUT(1) & INPUT(0);
+	end function;
+	
+	function to_byte (INPUT : std_logic_vector) return byte is
+	begin
+		return (INPUT(7),INPUT(6),INPUT(5),INPUT(4),INPUT(3),INPUT(2),INPUT(1),INPUT(0));
 	end function;
 end package body resources;
