@@ -4,12 +4,17 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 package resources is
+	-- Set the key length
+	constant key_length : integer := 128;
+
+	-- TYPE DEFINITIONS
 	type byte is array (7 downto 0) of std_logic;
 	-- To index column Foo: Foo(byte)(bit);
 	type column is array (0 to 3) of byte;
 	-- To index state_array Foo: Foo(column)(byte)(bit);
 	type state_array is array (0 to 3) of column;
 
+	-- COMPONENTS
 	component sbox
 	port(	INPUT		:	in		state_array;
 			OUTPUT	:	out	state_array
@@ -38,7 +43,7 @@ package resources is
 			abcdefg	:	out	std_logic_vector(0 to 6));
 	end component hex_2_7seg;
 
-	-- Overloaded operators
+	-- OVERLOADED OPERATORS
 	function "xor" (L,R : byte) return byte;
 	function "xor" (L,R : column) return column;
 	function "xor" (L,R : state_array) return state_array;
