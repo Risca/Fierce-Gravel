@@ -18,7 +18,7 @@ component mix_columns_column
 end component;
 
 begin
-	u1: for n in 3 downto 0 generate
+	u1: for n in 0 to 3 generate
 		u: mix_columns_column PORT MAP( INPUT => INPUT(n), OUTPUT => OUTPUT(n));
 	end generate;
 end architecture;
