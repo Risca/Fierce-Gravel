@@ -60,7 +60,25 @@ package resources is
 	port(	HEX		:	in		std_logic_vector(3 downto 0);
 			abcdefg	:	out	std_logic_vector(0 to 6));
 	end component hex_2_7seg;
+	
+	component first_round
+	port(	plaintext_in	: in  state_array;
+		   cipherKey_in	: in  round_key;
+			output 			: out state_array);
+	end component;
 
+	component main_round
+	port( state_in		   : in  state_array;
+			roundkey_in		: in  round_key;
+			state_out		: out state_array);
+	end component;
+
+	component final_round
+	port(	state_in		   : in  state_array;
+			roundkey_in		: in  round_key;
+			state_out		: out state_array);
+	end component;
+	
 	-- OVERLOADED OPERATORS
 	function "xor" (L,R : byte) return byte;
 	function "xor" (L,R : column) return column;
