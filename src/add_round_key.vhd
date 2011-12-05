@@ -4,7 +4,7 @@ use work.resources.all;
 
 entity add_round_key is
 	port(	STATE		:	in		state_array;
-			KEY		:	in		state_array;
+			KEY		:	in		round_key;
 			OUTPUT	:	out	state_array);
 end entity;
 
