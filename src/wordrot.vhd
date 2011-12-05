@@ -1,4 +1,4 @@
--- Title:			wordrot_column
+-- Title:			wordrot
 -- Date:				2011-11-28
 -- Author:			Daniel Josefsson
 -- Description:	This function rotates the bytes of a word to the left.
@@ -8,13 +8,13 @@ library ieee;
 use ieee.std_logic_1164.all;
 use work.resources.all;
 
-entity wordrot_column is
+entity wordrot is
 	port(	WORD		:	in		column;
 			OUTPUT	:	out	column;
 			OFFSET	:	in		std_logic_vector(1 downto 0));
 end entity;
 
-architecture impl of wordrot_column is
+architecture impl of wordrot is
 	begin
 	rotate:process(WORD, OFFSET)
 	begin

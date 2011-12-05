@@ -50,7 +50,7 @@ package resources is
 			OUTPUT	:	out	state_array);
 	end component add_round_key;
 
-	component wordrot_column
+	component wordrot
 	port(	WORD	:	in		column;
 		OUTPUT	:	out	column;
 		OFFSET	:	in		std_logic_vector(1 downto 0));

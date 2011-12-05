@@ -1,4 +1,4 @@
--- Title:			wordrot_column
+-- Title:			wordrot
 -- Date:				2011-11-28
 -- Author:			Patrik Dahlstrm
 -- Description:	This component shifts the rows of a state array
@@ -14,7 +14,7 @@ entity shift_rows is
 end entity;
 
 architecture impl of shift_rows is
-	component wordrot_column
+	component wordrot
 		port
 		(
 			WORD		:	in		column;
