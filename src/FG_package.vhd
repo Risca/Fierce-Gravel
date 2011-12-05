@@ -34,7 +34,7 @@ package resources is
 	end component;
 
 	component shift_rows
-		port(	STATE		:	in		state_array;
+		port(	INPUT		:	in		state_array;
 				OUTPUT	:	out	state_array);
 	end component;
 
@@ -45,7 +45,7 @@ package resources is
 	end component;
 
 	component add_round_key
-	port(	STATE		:	in		state_array;
+	port(	INPUT		:	in		state_array;
 			KEY		:	in		round_key;
 			OUTPUT	:	out	state_array);
 	end component add_round_key;

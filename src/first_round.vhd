@@ -17,7 +17,7 @@ end first_round;
 
 architecture structure of first_round is
 begin
-U0: add_round_key port map(STATE => plaintext_in,
+U0: add_round_key port map(INPUT => plaintext_in,
 									KEY => cipherKey_in,
 									OUTPUT => output);
 end structure;
