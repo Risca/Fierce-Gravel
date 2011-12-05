@@ -2,12 +2,9 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use work.resources.all;
--- Byte subsitution function by s-box transformation.
--- 2011-12-04
--- Author:	Daniel Josefsson
--- Comment: The code for the s-box array was snitched from http://www.isaakian.com/VHDL/AES/
---				due to laziness and to minimize typeos.
--- 			Modified by Patrik Dahlstrm to use byte
+-- Cipher key test vectors.
+-- 2011-12-05
+-- Author:	Daniel Josefsson and Patrik Dahlstrm
 entity cipher_key_hard_coded is
 		port(	OUTPUT	:	out	cipher_key );
 end entity;
