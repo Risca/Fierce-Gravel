@@ -15,10 +15,9 @@ entity first_round is
 	);
 end first_round;
 
-
 architecture structure of first_round is
 begin
 U0: add_round_key port map(STATE => plaintext_in,
-				 KEY => cipherKey_in,
-				 OUTPUT => output);
+									KEY => cipherKey_in,
+									OUTPUT => output);
 end structure;
