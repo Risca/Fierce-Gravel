@@ -24,7 +24,7 @@ begin
 		v1: if (n mod Nk) = 0 generate
 			-- (W(n-1) -> word_rotation -> sbox) xor W(n-1) xor rcon(i/Nk) -> W(n)
 			-- INPUT(n-1) -> word_rotation
-			w1: wordrot_column PORT MAP (WORD => W(n-1), OUTPUT => foo(n-Nk), OFFSET => "11");
+			w1: wordrot PORT MAP (WORD => W(n-1), OUTPUT => foo(n-Nk), OFFSET => "11");
 			-- word_rotation -> sbox
 			w2: for b in 0 to 3 generate
 				u: sbox_byte PORT MAP( INPUT => foo(n-Nk)(b), OUTPUT => bar(n-Nk)(b) );
