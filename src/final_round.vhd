@@ -3,9 +3,7 @@ use ieee.std_logic_1164.all;
 use work.resources.all;
 
 entity final_round is
-	
-	port
-	(
+	port	(
 		-- Input ports
 		state_in		   : in  state_array;
 		roundkey_in		: in  round_key;
