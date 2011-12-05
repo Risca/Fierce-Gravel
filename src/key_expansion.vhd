@@ -5,7 +5,7 @@ use work.resources.all;
 entity key_expansion is
 	port (
 		INPUT		:	in		cipher_key;
-		OUTPUT	:	out	round_keys
+		OUTPUT	:	out	round_keys_t
 	);
 end entity;
 
