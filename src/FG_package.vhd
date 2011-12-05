@@ -84,6 +84,12 @@ package resources is
 				OUTPUT	:	out	round_keys_t);
 	end component;
 	
+	component aes_encrypt
+		port(	PLAINTEXT	: in  state_array;
+				CIPHERKEY	: in  cipher_key;
+				CIPHERTEXT	: out state_array);
+	end component;
+	
 	-- OVERLOADED OPERATORS
 	function "xor" (L,R : byte) return byte;
 	function "xor" (L,R : column) return column;
