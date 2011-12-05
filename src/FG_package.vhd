@@ -18,7 +18,7 @@ package resources is
 	type state_array is array (0 to 3) of column;
 	
 	subtype round_key is state_array;
-	type round_keys is array (0 to Nr) of round_key; -- Nr+1 round keys
+	type round_keys_t is array (0 to Nr) of round_key; -- Nr+1 round keys
 	type cipher_key is array (0 to 4*Nk-1) of column;
 
 	-- COMPONENTS
@@ -50,7 +50,7 @@ package resources is
 			OUTPUT	:	out	state_array);
 	end component add_round_key;
 
-	component wordrot_column
+	component wordrot
 	port(	WORD	:	in		column;
 		OUTPUT	:	out	column;
 		OFFSET	:	in		std_logic_vector(1 downto 0));
@@ -68,17 +68,17 @@ package resources is
 	end component;
 
 	component main_round
-	port( state_in		   : in  state_array;
-			roundkey_in		: in  round_key;
-			state_out		: out state_array);
+	port(	state_in	: in  state_array;
+			roundkey_in	: in  round_key;
+			state_out	: out state_array);
 	end component;
 
 	component final_round
-	port(	state_in		   : in  state_array;
-			roundkey_in		: in  round_key;
-			state_out		: out state_array);
+	port(	state_in	: in  state_array;
+			roundkey_in	: in  round_key;
+			state_out	: out state_array);
 	end component;
-	
+
 	component uart
 	PORT (clk,rxd,rdn,wrn : in std_logic;
 		din : in byte;
@@ -86,6 +86,17 @@ package resources is
 		data_ready : out std_logic;
 		tbre : out std_logic;
 		sdo : out std_logic);
+	end component;
+
+	component key_expansion
+		port(	INPUT	:	in	cipher_key;
+				OUTPUT	:	out	round_keys_t);
+	end component;
+	
+	component aes_encrypt
+		port(	PLAINTEXT	: in  state_array;
+				CIPHERKEY	: in  cipher_key;
+				CIPHERTEXT	: out state_array);
 	end component;
 	
 	-- OVERLOADED OPERATORS

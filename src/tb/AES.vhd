@@ -39,32 +39,34 @@ architecture impl of AES is
 	component key_expansion 
 	port (
 		INPUT		:	in		cipher_key;
-		OUTPUT	:	out	round_keys
+		OUTPUT	:	out	round_keys_t
 	);
 	end component;
 
 	signal	returned_state			:	state_array;
 	signal	reference_state		:	state_array;
 	signal	ciph_key					:  cipher_key;
-	signal	generated_round_keys	:	round_keys;
+	signal	round_keys	:	round_keys_t;
 	signal	select_round			:	std_logic_vector(1 downto 0);
 begin
 	select_round <= SW(1 downto 0);
 
 	CK0: cipher_key_hard_coded PORT MAP(ciph_key);
-	K0: key_expansion PORT MAP(ciph_key, generated_round_keys);
+	K0: key_expansion PORT MAP(ciph_key, round_keys);
 	-- Get reference_state from a selection of first round, first main round,
 	-- and final round reference states
 	P0: plain_text_hard_coded PORT MAP (select_round, reference_state);
 	-- Map reference state and the first generated round key to first_round component,
 	-- and map the output to returned_state
---	FR: first_round PORT MAP (reference_state, generated_round_keys(0), returned_state);
+--	FR: first_round PORT MAP (reference_state, round_keys(0), returned_state);
 	-- Map reference state and the second generated round key to main_round component,
 	-- and map the output to returned_state
---	MR: main_round PORT MAP (reference_state, generated_round_keys(1), returned_state);
+--	MR: main_round PORT MAP (reference_state, round_keys(1), returned_state);
 	-- Map reference state and the last generated round key to final_round component,
 	-- and map the output to returned_state
-	FR: final_round PORT MAP (reference_state, generated_round_keys(Nr), returned_state);
+--	FR: final_round PORT MAP (reference_state, round_keys(Nr), returned_state);
+	
+	FG: aes_encrypt port map(PLAINTEXT => reference_state, CIPHERKEY => ciph_key, CIPHERTEXT => returned_state);
 	
 	-- Use SW3 and SW2 to select which column of returned_state to show on HEX display
 	D7: hex_2_7seg PORT MAP(std_logic_vector(returned_state(to_integer(unsigned(SW(3 downto 2))))(0)(7 downto 4)), HEX7);
