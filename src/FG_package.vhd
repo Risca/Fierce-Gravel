@@ -65,6 +65,7 @@ package resources is
 	function "xor" (L,R : byte) return byte;
 	function "xor" (L,R : column) return column;
 	function "xor" (L,R : state_array) return state_array;
+	-- function "xor" (L : state_array; R : round_key) return state_array;
 	function rcon(INPUT : integer range 0 to 15) return column;
 end package resources;
 
@@ -101,6 +102,16 @@ package body resources is
 		return result;
 	end function;
 	
+--	function "xor" (L : state_array; R : round_key) return state_array is
+--		variable result : state_array;
+--	begin
+--		result(3) := L(3) xor R(3);
+--		result(2) := L(2) xor R(2);
+--		result(1) := L(1) xor R(1);
+--		result(0) := L(0) xor R(0);
+--		return result;
+--	end function;
+	
 	function rcon(INPUT : integer range 0 to 15) return column is
 	type rconROM_type is array (0 to 15) of byte;
 	constant rconROMTable : rconROM_type :=(
@@ -110,6 +121,6 @@ package body resources is
 		x"80", x"1B", x"36", x"6C", x"D8", x"AB", x"4D", x"9A"
 	);
 	begin
-		return (rconROMTable(INPUT),"00","00","00");
+		return (rconROMTable(INPUT),x"00",x"00",x"00");
 	end function;
 end package body resources;
