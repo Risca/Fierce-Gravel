@@ -1,35 +1,18 @@
---    File Name:  rcvr.vhd
---      Version:  1.1
---         Date:  January 22, 2000
---        Model:  Uart Chip
--- Dependencies:  uart.vhd
---
---      Company:  Xilinx
---  Modified by:  Patrik Dahlström
---
---   Disclaimer:  THESE DESIGNS ARE PROVIDED "AS IS" WITH NO WARRANTY 
---                WHATSOEVER AND XILINX SPECIFICALLY DISCLAIMS ANY 
---                IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR
---                A PARTICULAR PURPOSE, OR AGAINST INFRINGEMENT.
---
---                Copyright (c) 2000 Xilinx, Inc.
---                All rights reserved
---
-
 library ieee ;
 use ieee.std_logic_1164.all ;
 use ieee.std_logic_arith.all ;
+use ieee.resources.all ;
 
 entity rcvr is
 port (clk,rxd,rdn : in std_logic ;
-	dout : out std_logic_vector (7 downto 0) ;
+	dout : out byte ;
 	data_ready : out std_logic
 ) ;
 end rcvr ;
 
 architecture v1 of rcvr is
 constant baudrate : integer := 115200;
-signal rbr : std_logic_vector (7 downto 0) := "00000000" ;
+signal rbr : byte := "00000000" ;
 signal rsr: std_logic_vector(9 downto 0);
 begin
 
@@ -62,7 +45,7 @@ begin
 				bit_count:=bit_count+1;
 			elsif(bit_count = 10) then
 				--coupling data to receive buffer register for 8 data bits
-			   rbr <= rsr(8 downto 1);
+			   rbr <= byte(rsr(8 downto 1));
 				--once the 10 bits are captured, the start_flag is reset
 				start_flag:=false;
 				--bit_count is reset to 0
@@ -85,6 +68,6 @@ begin
 	end if;
 end process;
 -- Latch dout when rdn=0
-dout <= std_logic_vector(rbr) when rdn = '0' else "ZZZZZZZZ" ;
+dout <= rbr when rdn = '0' else "ZZZZZZZZ" ;
 
 end ;
