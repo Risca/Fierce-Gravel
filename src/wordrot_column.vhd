@@ -22,11 +22,11 @@ architecture impl of wordrot_column is
 			when "00" =>
 				OUTPUT <=	WORD;
 			when "01" =>
-				OUTPUT <=	WORD(2 downto 0) & WORD(3);
+				OUTPUT <=	WORD(3) & WORD(0 to 2);
 			when "10" =>
-				OUTPUT <=	WORD(1 downto 0) & WORD(3 downto 2);
+				OUTPUT <=	WORD(2 to 3) & WORD(0 to 1);
 			when "11" =>
-				OUTPUT <=	WORD(0) & WORD(3 downto 1);
+				OUTPUT <=	WORD(1 to 3) & WORD(0);
 			when others =>
 				OUTPUT <=	WORD;
 		end case;
