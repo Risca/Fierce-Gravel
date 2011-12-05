@@ -79,6 +79,15 @@ package resources is
 			state_out		: out state_array);
 	end component;
 	
+	component uart
+	PORT (clk,rxd,rdn,wrn : in std_logic;
+		din : in byte;
+		dout : out byte;
+		data_ready : out std_logic;
+		tbre : out std_logic;
+		sdo : out std_logic);
+	end component;
+	
 	-- OVERLOADED OPERATORS
 	function "xor" (L,R : byte) return byte;
 	function "xor" (L,R : column) return column;
