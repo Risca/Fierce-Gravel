@@ -26,14 +26,22 @@ architecture impl of cipher_key_hard_coded is
 	constant column_192_5 : column :=( x"52", x"2c", x"6b", x"7b" );
 	
 	-- key length 256
-	constant column_256_0 : column :=( x"60", x"3d", x"eb", x"10" );
-	constant column_256_1 : column :=( x"15", x"ca", x"71", x"be" );
-	constant column_256_2 : column :=( x"2b", x"73", x"ae", x"f0" );
-	constant column_256_3 : column :=( x"85", x"7d", x"77", x"81" );
-	constant column_256_4 : column :=( x"1f", x"35", x"2c", x"07" );
-	constant column_256_5 : column :=( x"3b", x"61", x"08", x"d7" );
-	constant column_256_6 : column :=( x"2d", x"98", x"10", x"a3" );
-	constant column_256_7 : column :=( x"09", x"14", x"df", x"f4" );
+	constant column_256_0 : column :=( x"00", x"01", x"02", x"03" );
+	constant column_256_1 : column :=( x"04", x"05", x"06", x"07" );
+	constant column_256_2 : column :=( x"08", x"09", x"0a", x"0b" );
+	constant column_256_3 : column :=( x"0c", x"0d", x"0e", x"0f" );
+	constant column_256_4 : column :=( x"10", x"11", x"12", x"13" );
+	constant column_256_5 : column :=( x"14", x"15", x"16", x"17" );
+	constant column_256_6 : column :=( x"18", x"19", x"1a", x"1b" );
+	constant column_256_7 : column :=( x"1c", x"1d", x"1e", x"1f" );
+--	constant column_256_0 : column :=( x"60", x"3d", x"eb", x"10" );
+--	constant column_256_1 : column :=( x"15", x"ca", x"71", x"be" );
+--	constant column_256_2 : column :=( x"2b", x"73", x"ae", x"f0" );
+--	constant column_256_3 : column :=( x"85", x"7d", x"77", x"81" );
+--	constant column_256_4 : column :=( x"1f", x"35", x"2c", x"07" );
+--	constant column_256_5 : column :=( x"3b", x"61", x"08", x"d7" );
+--	constant column_256_6 : column :=( x"2d", x"98", x"10", x"a3" );
+--	constant column_256_7 : column :=( x"09", x"14", x"df", x"f4" );
 	
 	begin
 		u1:	if key_length = 128 generate

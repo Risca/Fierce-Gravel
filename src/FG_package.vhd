@@ -68,19 +68,28 @@ package resources is
 	end component;
 
 	component main_round
-	port( state_in		   : in  state_array;
-			roundkey_in		: in  round_key;
-			state_out		: out state_array);
+	port(	state_in	: in  state_array;
+			roundkey_in	: in  round_key;
+			state_out	: out state_array);
 	end component;
 
 	component final_round
-	port(	state_in		   : in  state_array;
-			roundkey_in		: in  round_key;
-			state_out		: out state_array);
+	port(	state_in	: in  state_array;
+			roundkey_in	: in  round_key;
+			state_out	: out state_array);
 	end component;
-	
+
+	component uart
+	PORT (clk,rxd,rdn,wrn : in std_logic;
+		din : in byte;
+		dout : out byte;
+		data_ready : out std_logic;
+		tbre : out std_logic;
+		sdo : out std_logic);
+	end component;
+
 	component key_expansion
-		port( INPUT		:	in		cipher_key;
+		port(	INPUT	:	in	cipher_key;
 				OUTPUT	:	out	round_keys_t);
 	end component;
 	
