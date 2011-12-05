@@ -30,15 +30,15 @@ architecture impl of plain_text_hard_coded is
 															( x"8b", x"a1", x"13", x"e7" ),
 															( x"1b", x"c3", x"42", x"d2" )
 														);
-	-- Undefined
-	constant undefined 	: state_array :=	(	( x"00", x"00", x"00", x"00" ),
-															( x"00", x"00", x"00", x"00" ),
-															( x"00", x"00", x"00", x"00" ),
-															( x"00", x"00", x"00", x"00" )
+	-- Test vector
+	constant test_vector	: state_array :=	(	( x"00", x"11", x"22", x"33" ),
+															( x"44", x"55", x"66", x"77" ),
+															( x"88", x"99", x"aa", x"bb" ),
+															( x"cc", x"dd", x"ee", x"ff" )
 														);
 	begin
 		OUTPUT <=	first_round when 	SEL = "00" else
-						main_round when 	SEL = "01" else
+						main_round  when 	SEL = "01" else
 						final_round when 	SEL = "10" else
-						undefined;
+						test_vector;
 end impl;
