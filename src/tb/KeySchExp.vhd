@@ -37,42 +37,7 @@ entity KeySchExp is
 end entity;
 
 architecture impl of KeySchExp is
-	COMPONENT sbox
-		port 
-		(
-			INPUT		:	in		std_logic_vector(7 downto 0);
-			OUTPUT	:	out	std_logic_vector(7 downto 0)
-		);
-	END COMPONENT;
 	
-	component rcon
-		port 
-		(
-			INPUT		:	in		std_logic_vector(3 downto 0);
-			OUTPUT	:	out	std_logic_vector(7 downto 0)
-		);
-	end component;
-	
-	component wordrot_column
-		port 
-		(
-			WORD		:	in		column;
-			OUTPUT	:	out	column;
-			OFFSET	:	in		std_logic_vector(1 downto 0)
-		);
-	end component;
-	
-	component key_exp_mem
-
-		port 
-		(
-			clk	: in std_logic;
-			addr	: in std_logic_vector(ADDR_WIDTH - 1 downto 0);
-			data	: in std_logic_vector((DATA_WIDTH-1) downto 0);
-			we		: in std_logic := '1';
-			q		: out state_array
-		);
-	end component;
 	component cipher_key_hard_coded is
 		port(	OUTPUT	:	out	cipher_key );
 	end component;
@@ -89,18 +54,14 @@ architecture impl of KeySchExp is
 	signal	round_keys_gen	:	round_keys;
 begin
 
-	-- M0: key_exp_mem PORT MAP (CLOCK_50, SW(13 downto 8), SW(7 downto 0) & SW(7 downto 0) & SW(7 downto 0) & SW(7 downto 0),
-	--									SW(14),
-	--									read_data
-	--									);
 	CK0: cipher_key_hard_coded PORT MAP(ciph_key);
 	K0: key_expansion PORT MAP(ciph_key, round_keys_gen);
-	D7: hex_2_7seg PORT MAP(std_logic_vector(round_keys_gen(Nr)(0)(3)(7 downto 4)), HEX7);
-	D6: hex_2_7seg PORT MAP(std_logic_vector(round_keys_gen(Nr)(0)(3)(3 downto 0)), HEX6);
-	D5: hex_2_7seg PORT MAP(std_logic_vector(round_keys_gen(Nr)(1)(3)(7 downto 4)), HEX5);
-	D4: hex_2_7seg PORT MAP(std_logic_vector(round_keys_gen(Nr)(1)(3)(3 downto 0)), HEX4);
-	D3: hex_2_7seg PORT MAP(std_logic_vector(round_keys_gen(Nr)(2)(3)(7 downto 4)), HEX3);
-	D2: hex_2_7seg PORT MAP(std_logic_vector(round_keys_gen(Nr)(2)(3)(3 downto 0)), HEX2);
-	D1: hex_2_7seg PORT MAP(std_logic_vector(round_keys_gen(Nr)(3)(3)(7 downto 4)), HEX1);
-	D0: hex_2_7seg PORT MAP(std_logic_vector(round_keys_gen(Nr)(3)(3)(3 downto 0)), HEX0);
+	D7: hex_2_7seg PORT MAP(std_logic_vector(round_keys_gen(1)(0)(3)(7 downto 4)), HEX7);
+	D6: hex_2_7seg PORT MAP(std_logic_vector(round_keys_gen(1)(0)(3)(3 downto 0)), HEX6);
+	D5: hex_2_7seg PORT MAP(std_logic_vector(round_keys_gen(1)(1)(3)(7 downto 4)), HEX5);
+	D4: hex_2_7seg PORT MAP(std_logic_vector(round_keys_gen(1)(1)(3)(3 downto 0)), HEX4);
+	D3: hex_2_7seg PORT MAP(std_logic_vector(round_keys_gen(1)(2)(3)(7 downto 4)), HEX3);
+	D2: hex_2_7seg PORT MAP(std_logic_vector(round_keys_gen(1)(2)(3)(3 downto 0)), HEX2);
+	D1: hex_2_7seg PORT MAP(std_logic_vector(round_keys_gen(1)(3)(3)(7 downto 4)), HEX1);
+	D0: hex_2_7seg PORT MAP(std_logic_vector(round_keys_gen(1)(3)(3)(3 downto 0)), HEX0);
 end impl;
