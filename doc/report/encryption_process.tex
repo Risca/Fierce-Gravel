@@ -14,7 +14,7 @@ As the last step, the state block is copied to the output block.
 
 \clearpage
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \begin{tikzpicture}[node distance = 30pt, auto]
     % Place nodes
@@ -75,7 +75,7 @@ As the last step, the state block is copied to the output block.
 \subsection{Substitution using a substitution table}\label{sec:substitution}
 Each byte in a state block is represented by two hexadecimal digits. These two digits are then used as row and column index in the substitution table in figure \ref{fig:s-box}. E.g. the value $\textrm{42}_{10}$ is $\textrm{2A}_{16}$ in hexadecimal form and would be transformed to $\textrm{E5}_{16}$.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \includegraphics[width=\linewidth]{s-box}
 \caption{Substitution table. Source: fips}
@@ -87,7 +87,7 @@ This transformation is performed on every byte in a state block.
 \subsection{Row shifting}
 Row shifting means that each row in a state block is cyclically shifted left $N$ times, where $N$ is the row number - 1, i.e. the first row is shifted $0$ times, the second row $1$ time, etc.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
 \includegraphics[width=\linewidth]{row_shifting}
 \caption{Illustration of row shifting. Source: fips}
@@ -96,7 +96,8 @@ Row shifting means that each row in a state block is cyclically shifted left $N$
 
 \subsection{Column mixing}
 The mix column transformation is done by multiplying each column by a given matrix as shown in equation \ref{eq:mix columns} below.
-\begin{equation}\label{eq:mix columns}
+\begin{equation}
+\label{eq:mix columns}
 	\begin{bmatrix}
 	S_{0,c}^\text{'} \\
 	S_{1,c}^\text{'} \\
@@ -122,7 +123,8 @@ The mix column transformation is done by multiplying each column by a given matr
 
 \subsection{Round key addition}
 The last step of every round is to add the round key to the state block.
-\begin{equation}\label{eq:round key}
+\begin{equation}
+\label{eq:round key}
 	\mathbf{S^\text{'}} = 
 	\overbrace{
 	\begin{bmatrix}
