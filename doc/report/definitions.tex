@@ -1,12 +1,9 @@
 \documentclass[report.tex]{subfiles}
 \begin{document}
-\section{Definitions}
-Before describing the AES encryption, some key definitions need to be mentioned
-
-\subsection{Addition}\label{sec:addition}
+\section{Addition}\label{sec:addition}
 In the AES standard, addition is performed bitwise with the XOR operator. No regard is taken to carry bits. Consequently, subtraction is identical to addition.
 
-\subsection{Multiplication}\label{sec:multiplication}
+\section{Multiplication}\label{sec:multiplication}
 In the AES standard, multiplication is performed by using the multiplication of polynomial modulo an irreducible polynomial of degree 8, GF$\left(2^{8}\right)$ 
 \begin{comment}
 	\cite[Sec.~4.2]{AES Standard}
@@ -23,15 +20,15 @@ The polynomia used in the AES standard is
 \end{equation}
 
 
-\subsection{Cipher key}
+\section{Cipher key}
 A cipher key is a secret "passphrase" shared between the encryption and decryption side. It is the single most important part of a crypto; once the cipher key is known, all data encrypted with that key can be decrypted.
 
-\subsection{Key length} \label{sec:key length}
+\section{Key length} \label{sec:key length}
 The key length determines how many bits that are used to encrypt input data. The AES standard defines 3 key lengths: AES-128, AES-192 and AES-256. The trailing number defines the key length in bits.
 
 The key length is commonly used to denote the strength of the AES encryption.
 
-\subsection{Block}
+\section{Block}
 Data and keys are organized in 4xN matrices called blocks (Figure \ref{fig:block definition}). Each element defines 1 byte and each column is 1 word (32 bits). A block is read one column at a time and each column from the top down.
 
 \begin{figure}[h]
@@ -54,7 +51,7 @@ Data and keys are organized in 4xN matrices called blocks (Figure \ref{fig:block
 
 Input, state and output data is always in 4x4 blocks (128 bits) while cipher keys can have varying lengths (see section \ref{sec:key length}).
 
-\subsection{Round}
+\section{Round}
 Encryption of data works by manipulating the input data in an iterative process where each iteration is called a round. The number of rounds needed is determined by the cipher key length.
 
 To calculate the number of rounds needed for a specific key length, (\ref{eq:round length}) can be used
@@ -63,10 +60,10 @@ To calculate the number of rounds needed for a specific key length, (\ref{eq:rou
 \end{equation}
 where $A_l$ and $W_l$ denotes key length (128, 192 or 256 bit) and word length (32 bit) respectively.
 
-\subsection{Round key}
+\section{Round key}
 For each round in the encryption process a different round key is used. In total there are $N_r+1$ round keys. More on this in section \ref{sec:theory}
 
-\subsection{State block or state array}
+\section{State block or state array}
 Data to be encrypted (input data) is copied to a state block. During intermediate encryption rounds, data is manipulated on the state block. After the final round the state block is copied to the output block.% See figure \ref{fig:state array}.
 
 \begin{figure}[h]
