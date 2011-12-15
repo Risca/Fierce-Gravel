@@ -1,4 +1,4 @@
--- Title:			wordrot_column
+-- Title:			wordrot
 -- Date:				2011-11-28
 -- Author:			Patrik Dahlstrm
 -- Description:	This component shifts the rows of a state array
@@ -9,12 +9,12 @@ use ieee.numeric_std.all;
 use work.resources.all;
 
 entity shift_rows is
-	port(	STATE		:	in		state_array;
+	port(	INPUT		:	in		state_array;
 			OUTPUT	:	out	state_array);
 end entity;
 
 architecture impl of shift_rows is
-	component wordrot_column
+	component wordrot
 		port
 		(
 			WORD		:	in		column;
@@ -23,9 +23,9 @@ architecture impl of shift_rows is
 		);
 	end component;
 begin
-	shift_rows: for i in 0 to 3 generate
-		u: wordrot_column PORT MAP (WORD => STATE(i),
-											 OUTPUT => OUTPUT(i),
-											 OFFSET => std_logic_vector(to_unsigned(i,2)));
-	end generate shift_rows;
+	OUTPUT(0) <= (INPUT(0)(0), INPUT(1)(1), INPUT(2)(2), INPUT(3)(3));
+	OUTPUT(1) <= (INPUT(1)(0), INPUT(2)(1), INPUT(3)(2), INPUT(0)(3));
+	OUTPUT(2) <= (INPUT(2)(0), INPUT(3)(1), INPUT(0)(2), INPUT(1)(3));
+	OUTPUT(3) <= (INPUT(3)(0), INPUT(0)(1), INPUT(1)(2), INPUT(2)(3));
+	
 end impl;

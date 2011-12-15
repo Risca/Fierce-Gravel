@@ -20,8 +20,8 @@ component sbox_byte
 	);
 end component;
 begin
-	u1: for c in 3 downto 0 generate
-		u2: for b in 3 downto 0 generate
+	u1: for c in 0 to 3 generate
+		u2: for b in 0 to 3 generate
 			u: sbox_byte PORT MAP( INPUT => INPUT(c)(b), OUTPUT => OUTPUT(c)(b));
 		end generate;
 	end generate;

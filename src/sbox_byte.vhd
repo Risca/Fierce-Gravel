@@ -39,7 +39,7 @@ architecture impl of sbox_byte is
 	begin
 		sbox_lookup:process(INPUT)
 		begin
-			OUTPUT <= sboxROMTable(to_integer(INPUT));
+			OUTPUT <= sboxROMTable(to_integer(unsigned(INPUT)));
 		end process sbox_lookup;
 	
 end impl;
