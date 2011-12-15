@@ -6,8 +6,11 @@ use ieee.numeric_std.all;
 package resources is
 	-- Set the key length
 	constant key_length : integer := 128;
+    -- Block length
 	constant Nb : integer := 4;
+    -- Number of columns defined by key
 	constant Nk : integer := key_length/32;
+    -- Number of rounds
 	constant Nr : integer := 6+Nk;
 
 	-- TYPE DEFINITIONS
