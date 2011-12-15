@@ -21,7 +21,8 @@ package resources is
 	type state_array is array (0 to 3) of column;
 
 	subtype round_key is state_array;
-	type round_keys_t is array (0 to Nr) of round_key; -- Nr+1 round keys
+	-- Nr+1 round keys
+	type round_keys_t is array (0 to Nr) of round_key;
 	type cipher_key is array (0 to 4*Nk-1) of column;
 
 	-- COMPONENTS
