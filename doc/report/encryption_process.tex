@@ -1,6 +1,6 @@
 \documentclass[report.tex]{subfiles}		
 \begin{document}
-\subsection{Encryption process} \label{sec:encryption process}
+\section{Encryption process} \label{sec:encryption process}
 Encrypting data with the AES algorithm begins by copying the input data to a state block and then adding the first round key. The state block is then transformed in $N_r-1$ rounds, where each round consists of four transformations:
 \begin{enumerate}
 \item Substitution using a substitution table
@@ -12,7 +12,9 @@ In the final round, no column mixing is performed since it does not add to the s
 
 As the last step, the state block is copied to the output block.
 
-\begin{figure}
+\clearpage
+
+\begin{figure}[h]
 \centering
 \begin{tikzpicture}[node distance = 30pt, auto]
     % Place nodes
@@ -68,7 +70,9 @@ As the last step, the state block is copied to the output block.
 \caption{Encryption process overview}
 \end{figure}
 
-\subsubsection{Substitution using a substitution table}\label{sec:substitution}
+\clearpage
+
+\subsection{Substitution using a substitution table}\label{sec:substitution}
 Each byte in a state block is represented by two hexadecimal digits. These two digits are then used as row and column index in the substitution table in figure \ref{fig:s-box}. E.g. the value $\textrm{42}_{10}$ is $\textrm{2A}_{16}$ in hexadecimal form and would be transformed to $\textrm{E5}_{16}$.
 
 \begin{figure}[h]
@@ -80,7 +84,7 @@ Each byte in a state block is represented by two hexadecimal digits. These two d
 
 This transformation is performed on every byte in a state block.
 
-\subsubsection{Row shifting}
+\subsection{Row shifting}
 Row shifting means that each row in a state block is cyclically shifted left $N$ times, where $N$ is the row number - 1, i.e. the first row is shifted $0$ times, the second row $1$ time, etc.
 
 \begin{figure}[h]
@@ -90,7 +94,7 @@ Row shifting means that each row in a state block is cyclically shifted left $N$
 \label{fig:row_shifting}
 \end{figure}
 
-\subsubsection{Column mixing}
+\subsection{Column mixing}
 The mix column transformation is done by multiplying each column by a given matrix as shown in equation \ref{eq:mix columns} below.
 \begin{equation}\label{eq:mix columns}
 	\begin{bmatrix}
@@ -116,7 +120,7 @@ The mix column transformation is done by multiplying each column by a given matr
 	\text{for }0 \leq c \leq 3
 \end{equation}
 
-\subsubsection{Round key addition}
+\subsection{Round key addition}
 The last step of every round is to add the round key to the state block.
 \begin{equation}\label{eq:round key}
 	\mathbf{S^\text{'}} = 
