@@ -8,6 +8,7 @@ package variables is
 	-- change the function of the algorithm. This file is ignored by git since
 	-- the values needs to be alterd locally.
 	-- If a variable is added should this file be pushed.
+	
    -- CONSTANTS
 	-- Set the key length
 	-- 128, 192 or 256
