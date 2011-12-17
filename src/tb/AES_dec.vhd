@@ -6,7 +6,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-use work.variables.all;
 use work.resources.all;
 
 entity AES_dec is
