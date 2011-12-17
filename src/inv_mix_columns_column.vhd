@@ -25,25 +25,33 @@ signal products : state_array;
 begin
 	-- This is voodoo magic!
 	u1: GF_1248_multiply port map(INPUT => INPUT, OUTPUT => products);
-	
-	OUTPUT(0) <= ( products(3)(0) xor products(2)(0) xor products(1)(0) ) xor --*0e
-					 ( products(3)(1) xor products(1)(1) xor products(0)(1) ) xor --*0b
-					 ( products(3)(2) xor products(2)(2) xor products(0)(2) ) xor --*0d
-					 ( products(3)(3) xor products(0)(3) );							  --*09
+gen1: for i in 0 to 3 generate
+	OUTPUT(i) <= ( products(3)(i) xor products(2)(i) xor products(1)(i) ) xor --*0e
+					 ( products(3)((i+1) mod 4) xor products(1)((i+1) mod 4) xor products(0)((i+1) mod 4) ) xor --*0b
+					 ( products(3)((i+2) mod 4) xor products(2)((i+2) mod 4) xor products(0)((i+2) mod 4) ) xor --*0d
+					 ( products(3)((i+3) mod 4) xor products(0)((i+3) mod 4) );							  --*09
 
-	OUTPUT(1) <= ( products(3)(1) xor products(2)(1) xor products(1)(1) ) xor --*0e
-					 ( products(3)(2) xor products(1)(2) xor products(0)(2) ) xor --*0b
-					 ( products(3)(3) xor products(2)(3) xor products(0)(3) ) xor --*0d
-					 ( products(3)(0) xor products(0)(0) );							  --*09
-		
-	OUTPUT(2) <= ( products(3)(2) xor products(2)(2) xor products(1)(2) ) xor --*0e
-					 ( products(3)(3) xor products(1)(3) xor products(0)(3) ) xor --*0b
-					 ( products(3)(0) xor products(2)(0) xor products(0)(0) ) xor --*0d
-					 ( products(3)(1) xor products(0)(1) );							  --*09
-		
-	OUTPUT(3) <= ( products(3)(3) xor products(2)(3) xor products(1)(3) ) xor --*0e
-					 ( products(3)(0) xor products(1)(0) xor products(0)(0) ) xor --*0b
-					 ( products(3)(1) xor products(2)(1) xor products(0)(1) ) xor --*0d
-					 ( products(3)(2) xor products(0)(2) );							  --*09
+end generate;
+	
+	
+--	OUTPUT(0) <= ( products(3)(0) xor products(2)(0) xor products(1)(0) ) xor --*0e
+--					 ( products(3)(1) xor products(1)(1) xor products(0)(1) ) xor --*0b
+--					 ( products(3)(2) xor products(2)(2) xor products(0)(2) ) xor --*0d
+--					 ( products(3)(3) xor products(0)(3) );							  --*09
+--
+--	OUTPUT(1) <= ( products(3)(1) xor products(2)(1) xor products(1)(1) ) xor --*0e
+--					 ( products(3)(2) xor products(1)(2) xor products(0)(2) ) xor --*0b
+--					 ( products(3)(3) xor products(2)(3) xor products(0)(3) ) xor --*0d
+--					 ( products(3)(0) xor products(0)(0) );							  --*09
+--		
+--	OUTPUT(2) <= ( products(3)(2) xor products(2)(2) xor products(1)(2) ) xor --*0e
+--					 ( products(3)(3) xor products(1)(3) xor products(0)(3) ) xor --*0b
+--					 ( products(3)(0) xor products(2)(0) xor products(0)(0) ) xor --*0d
+--					 ( products(3)(1) xor products(0)(1) );							  --*09
+--		
+--	OUTPUT(3) <= ( products(3)(3) xor products(2)(3) xor products(1)(3) ) xor --*0e
+--					 ( products(3)(0) xor products(1)(0) xor products(0)(0) ) xor --*0b
+--					 ( products(3)(1) xor products(2)(1) xor products(0)(1) ) xor --*0d
+--					 ( products(3)(2) xor products(0)(2) );							  --*09
 
 end architecture;
