@@ -70,6 +70,11 @@ package resources is
 				OUTPUT	: 	out	state_array	);
 	end component;
 
+	component inv_mix_columns
+		port(	INPUT		: 	in		state_array;
+				OUTPUT	: 	out	state_array	);
+	end component;
+	
 	component add_round_key
 		port(	INPUT		:	in		state_array;
 				KEY		:	in		round_key;
