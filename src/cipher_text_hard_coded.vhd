@@ -13,10 +13,10 @@ end entity;
 
 architecture impl of cipher_text_hard_coded is
 	-- AES-128;
-	constant aes_128		: state_array :=	(	( x"69", x"c4", x"e0", x"d8" ),
-															( x"6a", x"7b", x"04", x"30" ),
-															( x"d8", x"cd", x"b7", x"80" ),
-															( x"70", x"b4", x"c5", x"5a" )
+	constant aes_128		: state_array :=	(	( x"39", x"25", x"84", x"1d" ),
+															( x"02", x"dc", x"09", x"fb" ),
+															( x"dc", x"11", x"85", x"97" ),
+															( x"19", x"6a", x"0b", x"32" )
 														);
 	-- AES-192;
 	constant aes_192	 	: state_array :=	(	( x"dd", x"a9", x"7c", x"a4" ),
