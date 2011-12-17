@@ -122,6 +122,12 @@ package resources is
 				state_out		: out state_array	);
 	end component;
 
+	component inv_final_round
+		port(	state_in		   : in  state_array;
+				roundkey_in		: in  round_key;
+				state_out		: out state_array	);
+	end component;
+	
 	component uart
 		port (	clk,rxd,rdn,wrn	: in	std_logic;
 					din 					: in	byte;
