@@ -28,65 +28,73 @@ package resources is
 
 	-- COMPONENTS
 	component sbox
-	port(	INPUT	:	in	state_array;
-			OUTPUT	:	out	state_array
-	);
+		port(	INPUT		:	in		state_array;
+				OUTPUT	:	out	state_array	);
 	end component;
 
 	component sbox_byte
-	port(	INPUT	:	in	byte;
-			OUTPUT	:	out	byte);
+		port(	INPUT		:	in		byte;
+				OUTPUT	:	out	byte	);
+	end component;
+	
+	component inv_sbox
+		port(	INPUT		:	in		state_array;
+				OUTPUT	:	out	state_array	);
+	end component;
+
+	component inv_sbox_byte
+		port(	INPUT		:	in		byte;
+				OUTPUT	:	out	byte	);
 	end component;
 
 	component shift_rows
-	port(	INPUT	:	in	state_array;
-			OUTPUT	:	out	state_array);
+		port(	INPUT	:	in	state_array;
+				OUTPUT	:	out	state_array	);
 	end component;
 	
 	component inv_shift_rows
 		port(	INPUT		:	in		state_array;
-				OUTPUT	:	out	state_array);
+				OUTPUT	:	out	state_array	);
 	end component;
 
 	component mix_columns
-	port(	INPUT	: 	in	state_array;
-			OUTPUT	: 	out	state_array
-		);
+		port(	INPUT	: 	in	state_array;
+				OUTPUT	: 	out	state_array	);
 	end component;
 
 	component add_round_key
-	port(	INPUT	:	in	state_array;
-			KEY		:	in	round_key;
-			OUTPUT	:	out	state_array);
+		port(	INPUT		:	in		state_array;
+				KEY		:	in		round_key;
+				OUTPUT	:	out	state_array	);
 	end component;
 
 	component wordrot
-	port(	WORD	:	in	column;
-			OUTPUT	:	out	column;
-			OFFSET	:	in	std_logic_vector(1 downto 0));
+		port(	WORD		:	in		column;
+				OUTPUT	:	out	column;
+				OFFSET	:	in		std_logic_vector(1 downto 0)	);
 	end component;
 
 	component hex_2_7seg
-	port(	HEX		:	in	std_logic_vector(3 downto 0);
-			abcdefg	:	out	std_logic_vector(0 to 6));
+		port(	HEX		:	in		std_logic_vector(3 downto 0);
+				abcdefg	:	out	std_logic_vector(0 to 6)	);
 	end component;
 	
 	component first_round
-	port(	plaintext_in	: in  state_array;
-			cipherKey_in	: in  round_key;
-			output 			: out state_array);
+		port(	plaintext_in	: in  state_array;
+				cipherKey_in	: in  round_key;
+				output 			: out state_array	);
 	end component;
 
 	component main_round
-	port(	state_in	: in  state_array;
-			roundkey_in	: in  round_key;
-			state_out	: out state_array);
+		port(	state_in		: in  state_array;
+				roundkey_in	: in  round_key;
+				state_out	: out state_array	);
 	end component;
 
 	component final_round
-	port(	state_in	: in  state_array;
-			roundkey_in	: in  round_key;
-			state_out	: out state_array);
+		port(	state_in		: in  state_array;
+				roundkey_in	: in  round_key;
+				state_out	: out state_array	);
 	end component;
 	
 	component inv_first_round
@@ -102,17 +110,17 @@ package resources is
 	end component;
 
 	component uart
-	port (	clk,rxd,rdn,wrn : in	std_logic;
-			din 			: in	byte;
-			dout 			: out	byte;
-			data_ready 		: out	std_logic;
-			tbre 			: out	std_logic;
-			sdo 			: out	std_logic);
+		port (	clk,rxd,rdn,wrn	: in	std_logic;
+					din 					: in	byte;
+					dout 					: out	byte;
+					data_ready 			: out	std_logic;
+					tbre 					: out	std_logic;
+					sdo 					: out	std_logic	);
 	end component;
 
 	component key_expansion
-	port(	INPUT	:	in	cipher_key;
-			OUTPUT	:	out	round_keys_t);
+		port(	INPUT		:	in		cipher_key;
+				OUTPUT	:	out	round_keys_t);
 	end component;
 	
 	component aes_encrypt
