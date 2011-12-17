@@ -17,35 +17,16 @@ architecture Behavior of mix_columns_column is
 --		|"01"	"01"	"02"	"03"|		| C2 |
 --		|"03"	"01"	"01"	"02"|		| C3 |
 
-signal C0 : byte;
-signal C1 : byte;
-signal C2 : byte;
-signal C3 : byte;
+signal products : state_array; -- Contains the input column multiplied by two.
 begin
-	C0 <= INPUT(0);
-	C1 <= INPUT(1);
-	C2 <= INPUT(2);
-	C3 <= INPUT(3);
+-- This is voodoo magic!
+	u1: GF_1248_multiply port map(INPUT => INPUT, OUTPUT => products);
 
-	-- XOR input with "1B" (0001 1011) only when MSB (or b7) of byte is 1
-	OUTPUT(0) <= ((C0(6 downto 0) & '0') xor ("000" & C0(7) & C0(7) & '0' & C0(7) & C0(7))) xor 				--x02
-					(((C1(6 downto 0) & '0') xor ("000" & C1(7) & C1(7) & '0' & C1(7) & C1(7))) xor C1) xor	--x03
-						C2 xor																											--x01
-						C3;																												--x01
+	gen1: for i in 0 to 3 generate
+	OUTPUT(i) <= ( products(1)( i ) ) 														xor	--*02
+					 ( products(1)((i+1) mod 4) 	xor products(0)((i+1) mod 4) ) 	xor	--*03
+					 ( products(0)((i+2) mod 4) ) 											xor	--*01
+					 ( products(0)((i+3) mod 4) );													--*01
+	end generate;
 
-	OUTPUT(1) <=   C0 xor																											--x01
-					 ((C1(6 downto 0) & '0') xor ("000" & C1(7) & C1(7) & '0' & C1(7) & C1(7))) xor				--x02
-					(((C2(6 downto 0) & '0') xor ("000" & C2(7) & C2(7) & '0' & C2(7) & C2(7))) xor C2) xor	--x03
-						C3;																												--x01
-
-	OUTPUT(2) <=	  C0 xor																											--x01
-						  C1 xor																											--x01
-						((C2(6 downto 0) & '0') xor ("000" & C2(7) & C2(7) & '0' & C2(7) & C2(7))) xor			--x02
-					  (((C3(6 downto 0) & '0') xor ("000" & C3(7) & C3(7) & '0' & C3(7) & C3(7))) xor C3);		--x03
-
-	OUTPUT(3) <=  (((C0(6 downto 0) & '0') xor ("000" & C0(7) & C0(7) & '0' & C0(7) & C0(7))) xor C0) xor	--x03
-						  C1 xor																											--x01
-						  C2 xor																											--x01
-						((C3(6 downto 0) & '0') xor ("000" & C3(7) & C3(7) & '0' & C3(7) & C3(7)));				--x02
-	-- This is voodoo magic!
 end architecture;
