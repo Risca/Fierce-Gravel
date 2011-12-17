@@ -4,10 +4,15 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 package resources is
+   -- CONSTANTS
 	-- Set the key length
 	constant key_length : integer := 256;
+
+    -- Block length
 	constant Nb : integer := 4;
+    -- Number of columns defined by key
 	constant Nk : integer := key_length/32;
+    -- Number of rounds
 	constant Nr : integer := 6+Nk;
 
 	-- TYPE DEFINITIONS
@@ -16,54 +21,54 @@ package resources is
 	type column is array (0 to 3) of byte;
 	-- To index state_array Foo: Foo(column)(byte)(bit);
 	type state_array is array (0 to 3) of column;
-	
+
 	subtype round_key is state_array;
 	type round_keys_t is array (0 to Nr) of round_key; -- Nr+1 round keys
 	type cipher_key is array (0 to 4*Nk-1) of column;
 
 	-- COMPONENTS
 	component sbox
-	port(	INPUT		:	in		state_array;
+	port(	INPUT	:	in	state_array;
 			OUTPUT	:	out	state_array
 	);
 	end component;
 
 	component sbox_byte
-	port(	INPUT		:	in		byte;
+	port(	INPUT	:	in	byte;
 			OUTPUT	:	out	byte);
 	end component;
 
 	component shift_rows
-		port(	INPUT		:	in		state_array;
-				OUTPUT	:	out	state_array);
+	port(	INPUT	:	in	state_array;
+			OUTPUT	:	out	state_array);
 	end component;
 
 	component mix_columns
-	PORT (INPUT		: in	state_array;
-			OUTPUT	: out	state_array
+	port(	INPUT	: 	in	state_array;
+			OUTPUT	: 	out	state_array
 		);
 	end component;
 
 	component add_round_key
-	port(	INPUT		:	in		state_array;
-			KEY		:	in		round_key;
+	port(	INPUT	:	in	state_array;
+			KEY		:	in	round_key;
 			OUTPUT	:	out	state_array);
-	end component add_round_key;
+	end component;
 
 	component wordrot
-	port(	WORD	:	in		column;
-		OUTPUT	:	out	column;
-		OFFSET	:	in		std_logic_vector(1 downto 0));
+	port(	WORD	:	in	column;
+			OUTPUT	:	out	column;
+			OFFSET	:	in	std_logic_vector(1 downto 0));
 	end component;
 
 	component hex_2_7seg
-	port(	HEX		:	in		std_logic_vector(3 downto 0);
+	port(	HEX		:	in	std_logic_vector(3 downto 0);
 			abcdefg	:	out	std_logic_vector(0 to 6));
-	end component hex_2_7seg;
+	end component;
 	
 	component first_round
 	port(	plaintext_in	: in  state_array;
-		   cipherKey_in	: in  round_key;
+			cipherKey_in	: in  round_key;
 			output 			: out state_array);
 	end component;
 
@@ -80,17 +85,17 @@ package resources is
 	end component;
 
 	component uart
-	PORT (clk,rxd,rdn,wrn : in std_logic;
-		din : in byte;
-		dout : out byte;
-		data_ready : out std_logic;
-		tbre : out std_logic;
-		sdo : out std_logic);
+	port (	clk,rxd,rdn,wrn : in	std_logic;
+			din 			: in	byte;
+			dout 			: out	byte;
+			data_ready 		: out	std_logic;
+			tbre 			: out	std_logic;
+			sdo 			: out	std_logic);
 	end component;
 
 	component key_expansion
-		port(	INPUT	:	in	cipher_key;
-				OUTPUT	:	out	round_keys_t);
+	port(	INPUT	:	in	cipher_key;
+			OUTPUT	:	out	round_keys_t);
 	end component;
 	
 	component aes_encrypt
