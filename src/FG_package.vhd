@@ -6,7 +6,7 @@ use ieee.numeric_std.all;
 package resources is
    -- CONSTANTS
 	-- Set the key length
-	constant key_length : integer := 256;
+	constant key_length : integer := 128;
 
     -- Block length
 	constant Nb : integer := 4;

@@ -3,5 +3,8 @@
 # and temporary files.
 *~
 
+# Ignore FG_variables to be able to vary the variables locally.
+src/FG_variables.vhd
+
 # Ignore project folders
 AES_decryption/
