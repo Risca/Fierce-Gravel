@@ -42,6 +42,11 @@ package resources is
 	port(	INPUT	:	in	state_array;
 			OUTPUT	:	out	state_array);
 	end component;
+	
+	component inv_shift_rows
+		port(	INPUT		:	in		state_array;
+				OUTPUT	:	out	state_array);
+	end component;
 
 	component mix_columns
 	port(	INPUT	: 	in	state_array;
@@ -88,6 +93,12 @@ package resources is
 		port(	ciphertext_in	: in  state_array;
 				cipherKey_in	: in  round_key;
 				output 			: out state_array );
+	end component;
+	
+	component inv_main_round
+		port(	state_in		   : in  state_array;
+				roundkey_in		: in  round_key;
+				state_out		: out state_array	);
 	end component;
 
 	component uart
