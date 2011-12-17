@@ -2,11 +2,9 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+use work.variables.all;
 
 package resources is
-   -- CONSTANTS
-	-- Set the key length
-	constant key_length : integer := 128;
 
     -- Block length
 	constant Nb : integer := 4;
@@ -48,7 +46,7 @@ package resources is
 	end component;
 
 	component shift_rows
-		port(	INPUT	:	in	state_array;
+		port(	INPUT		:	in		state_array;
 				OUTPUT	:	out	state_array	);
 	end component;
 	
@@ -57,8 +55,18 @@ package resources is
 				OUTPUT	:	out	state_array	);
 	end component;
 
+	component GF_2_multiply
+		port(	INPUT		: in		column;
+				OUTPUT	: out		column );
+	end component;
+	
+	component GF_1248_multiply
+		port(	INPUT		: in		column;
+				OUTPUT	: out 	state_array	);
+	end component;
+	
 	component mix_columns
-		port(	INPUT	: 	in	state_array;
+		port(	INPUT		: 	in		state_array;
 				OUTPUT	: 	out	state_array	);
 	end component;
 
