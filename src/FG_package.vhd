@@ -5,7 +5,7 @@ use ieee.numeric_std.all;
 
 package resources is
 	-- Set the key length
-	constant key_length : integer := 128;
+	constant key_length : integer := 256;
 	constant Nb : integer := 4;
 	constant Nk : integer := key_length/32;
 	constant Nr : integer := 6+Nk;
@@ -78,6 +78,12 @@ package resources is
 			roundkey_in	: in  round_key;
 			state_out	: out state_array);
 	end component;
+	
+	component inv_first_round
+		port(	ciphertext_in	: in  state_array;
+				cipherKey_in	: in  round_key;
+				output 			: out state_array );
+	end component;
 
 	component uart
 	PORT (clk,rxd,rdn,wrn : in std_logic;
@@ -97,6 +103,12 @@ package resources is
 		port(	PLAINTEXT	: in  state_array;
 				CIPHERKEY	: in  cipher_key;
 				CIPHERTEXT	: out state_array);
+	end component;
+	
+	component aes_decrypt
+		port(	CIPHERTEXT	: in  state_array;
+				CIPHERKEY	: in  cipher_key;
+				PLAINTEXT	: out state_array);
 	end component;
 	
 	-- OVERLOADED OPERATORS
