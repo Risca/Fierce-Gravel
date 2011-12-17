@@ -5,20 +5,20 @@ use work.resources.all;
 -- Byte subsitution function by inverted s-box transformation.
 -- 2011-12-17
 -- Author:	Daniel Josefsson and Staffan Sjqvist
-entity inv_inv_sbox_byte is
+entity inv_sbox_byte is
 	port(	INPUT		:	in		byte;
 			OUTPUT	:	out	byte
 	);
 end entity;
 
-architecture impl of inv_inv_sbox_byte is
+architecture impl of inv_sbox_byte is
 	type sboxROM_type is array (0 to 255) of byte;
 	constant inv_sboxROMTable : sboxROM_type :=(
 	--   0      1      2      3      4      5      6      7      8      9      a      b      c      d      e      f 
 		x"52", x"09", x"6a", x"d5", x"30", x"36", x"a5", x"38", x"bf", x"40", x"a3", x"9e", x"81", x"f3", x"d7", x"fb",   --00
 		x"7c", x"e3", x"39", x"82", x"9b", x"2f", x"ff", x"87", x"34", x"8e", x"43", x"44", x"c4", x"de", x"e9", x"cb",   --10
-		x"54", x"7b", x"94", x"32", x"a6", x"c2", x"23", x"3d", x"ee", x"4c", x"95", x"0b", x"42", x"fa", x"c3", x"e4",   --20
-		x"08", x"2e", x"a1", x"66", x"28", x"d9", x"24", x"b2", x"76", x"5b", x"80", x"a2", x"49", x"6d", x"8b", x"d1",   --30
+		x"54", x"7b", x"94", x"32", x"a6", x"c2", x"23", x"3d", x"ee", x"4c", x"95", x"0b", x"42", x"fa", x"c3", x"4e",   --20
+		x"08", x"2e", x"a1", x"66", x"28", x"d9", x"24", x"b2", x"76", x"5b", x"a2", x"49", x"6d", x"8b", x"d1", x"25",   --30
 		x"72", x"f8", x"f6", x"64", x"86", x"68", x"98", x"16", x"d4", x"a4", x"5c", x"cc", x"5d", x"65", x"b6", x"92",   --40
 		x"6c", x"70", x"48", x"50", x"fd", x"ed", x"b9", x"da", x"5e", x"15", x"46", x"57", x"a7", x"8d", x"9d", x"84",   --50
 		x"90", x"d8", x"ab", x"00", x"8c", x"bc", x"d3", x"0a", x"f7", x"e4", x"58", x"05", x"b8", x"b3", x"45", x"06",   --60
