@@ -24,11 +24,8 @@ begin
 	U0: inv_first_round port map(ciphertext_in => CIPHERTEXT, cipherkey_in => round_keys(Nr), output => state(0)); -- PLAINTEXT
 	
 	--	 Generate (Nr-1) main rounds
-	-- Uncomment to add later rounds.
-	-- V1: for i in 1 to 1 generate -- (Nr-1)
-	 MR: inv_main_round port map(state_in => state(0), roundkey_in => round_keys(Nr - 1), state_out =>  PLAINTEXT); --state(i)
-		-- MR: inv_main_round port map(state_in => state(i-1), roundkey_in => round_keys(Nr - i), state_out =>  PLAINTEXT); --state(i)
-	-- end generate;
---
---	U1: inv_final_round port map(state_in => state(Nr-1), roundkey_in => round_keys(0), state_out => PLAINTEXT );
+	U1: for i in 1 to (Nr-1) generate
+		MR: inv_main_round port map(state_in => state(i-1), roundkey_in => round_keys(Nr - i), state_out =>  state(i)); -- PLAINTEXT
+	end generate;
+	U2: inv_final_round port map(state_in => state(Nr-1), roundkey_in => round_keys(0), state_out => PLAINTEXT );
 end structure;
