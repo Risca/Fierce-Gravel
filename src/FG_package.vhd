@@ -83,6 +83,12 @@ package resources is
 			roundkey_in	: in  round_key;
 			state_out	: out state_array);
 	end component;
+	
+	component inv_first_round
+		port(	ciphertext_in	: in  state_array;
+				cipherKey_in	: in  round_key;
+				output 			: out state_array );
+	end component;
 
 	component uart
 	port (	clk,rxd,rdn,wrn : in	std_logic;
@@ -102,6 +108,12 @@ package resources is
 		port(	PLAINTEXT	: in  state_array;
 				CIPHERKEY	: in  cipher_key;
 				CIPHERTEXT	: out state_array);
+	end component;
+	
+	component aes_decrypt
+		port(	CIPHERTEXT	: in  state_array;
+				CIPHERKEY	: in  cipher_key;
+				PLAINTEXT	: out state_array);
 	end component;
 	
 	-- OVERLOADED OPERATORS
