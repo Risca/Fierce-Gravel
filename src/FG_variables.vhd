@@ -1,4 +1,4 @@
-- Package declaration
+-- Package declaration
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -12,4 +12,4 @@ package variables is
 	-- Set the key length
 	-- 128, 192 or 256
 	constant key_length : integer := 128;
-end package resources;
+end package variables;
