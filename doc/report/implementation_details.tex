@@ -1,0 +1,63 @@
+\documentclass[report.tex]{subfiles} 
+\begin{document}
+\chapter{Implementation Details}
+\label{chap:implementation details}
+Approximately each section in chapter \ref{sec:theory} is translated into a separate VHDL component. Some components are in themselves also divided in subcomponents to make the code more manageable. The complete and most up-to-date code is found on \url{https://github.com/Risca/Fierce-Gravel}.
+
+Since almost each operation in chapter \ref{sec:theory} is a separate component and the fact that the source code available on-line is well commented, this section will only highlight the topics of the VHDL implementation that require investigation. These topics include:
+
+\begin{itemize}
+\item The \emph{Resources} and \emph{Variables} Packages
+\item Top Level Entities
+\item Test Benches
+\end{itemize}
+
+\section{The \emph{resources} and \emph{variables} packages}
+The VHDL standard defines an elegant way to summarize all different types, subtypes, functions, components, etc. in what is called a \emph{package}. This project have two packages for all its parts --- The \emph{resources} and the \emph{variables} package.
+
+\subsection{\emph{Resources} package}
+This package contains type and component declarations, and a few functions.
+
+The type definitions were introduced to make it clear what signals the input and outputs of each component are supposed to be fed.
+Listing \ref{list:typedefs} show the six different types used throughout the project.
+
+%\begin{figure}[ht]
+\lstinputlisting[firstline=7,
+                 firstnumber=7,
+                 lastline=20,
+                 label={list:typedefs},
+                 caption={FG\_package.vhd, type definitions}]
+{FG_package.vhd}
+%\end{figure}
+
+The component declarations are not very informative to list here and the reader is therefore referred to the on-line source.
+
+To be able to use the type definitions above, the XOR operator function had to be overloaded.
+
+The round constant is also defined as a function, mainly because of simplicity.
+
+Listing \ref{list:func dec} and listing \ref{list:func def} show the function declarations and definitions respectively.
+
+%\begin{figure}[ht]
+\lstinputlisting[firstline=151,
+                 firstnumber=151,
+                 lastline=156,
+                 label={list:func dec},
+                 caption={FG\_package.vhd, function declarations}]
+{FG_package.vhd}
+%\end{figure}
+
+%\begin{figure}[ht]
+\lstinputlisting[firstline=162,
+                 firstnumber=162,
+                 lastline=213,
+                 label={list:func def},
+                 caption={FG\_package.vhd, function definitions}]
+{FG_package.vhd}
+%\end{figure}
+
+\section{Top level entities}
+
+\section{Test benches}
+
+\end{document}
