@@ -13,4 +13,11 @@ package variables is
 	-- Set the key length
 	-- 128, 192 or 256
 	constant key_length : integer := 128;
+    -- Block length
+	constant Nb : integer := 4;
+    -- Number of columns defined by key
+	constant Nk : integer := key_length/32;
+    -- Number of rounds
+	constant Nr : integer := 6+Nk;
+
 end package variables;

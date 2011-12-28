@@ -66,7 +66,7 @@ begin
 	-- and map the output to returned_state
 --	FR: final_round PORT MAP (reference_state, round_keys(Nr), returned_state);
 	
-	FG: aes_encrypt port map(PLAINTEXT => reference_state, CIPHERKEY => ciph_key, CIPHERTEXT => returned_state);
+	FG: aes_decrypt port map(PLAINTEXT => reference_state, CIPHERKEY => ciph_key, CIPHERTEXT => returned_state);
 	
 	-- Use SW3 and SW2 to select which column of returned_state to show on HEX display
 	D7: hex_2_7seg PORT MAP(std_logic_vector(returned_state(to_integer(unsigned(SW(3 downto 2))))(0)(7 downto 4)), HEX7);

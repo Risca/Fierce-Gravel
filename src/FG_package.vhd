@@ -6,13 +6,6 @@ use work.variables.all;
 
 package resources is
 
-    -- Block length
-	constant Nb : integer := 4;
-    -- Number of columns defined by key
-	constant Nk : integer := key_length/32;
-    -- Number of rounds
-	constant Nr : integer := 6+Nk;
-
 	-- TYPE DEFINITIONS
 	type byte is array (7 downto 0) of std_logic;
 	-- To index column Foo: Foo(byte)(bit);

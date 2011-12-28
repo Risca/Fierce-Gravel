@@ -1,6 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use work.resources.all;
+use work.variables.all;
 
 -- Top level entity for the Fierce-Gravel AES encryptor
 
