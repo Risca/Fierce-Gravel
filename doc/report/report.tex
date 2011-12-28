@@ -26,7 +26,7 @@
 	basicstyle=\footnotesize,      % the size of the fonts that are used for the code
 	numbers=left,                  % where to put the line-numbers
 	numberstyle=\footnotesize,     % the size of the fonts that are used for the line-numbers
-	stepnumber=5,                  % the step between two line-numbers. If it is 1 each line will be numbered
+	stepnumber=2,                  % the step between two line-numbers. If it is 1 each line will be numbered
 	numbersep=5pt,                 % how far the line-numbers are from the code
 	backgroundcolor=\color{white}, % choose the background color. You must add \usepackage{color}
 	showspaces=false,              % show spaces adding particular underscores
@@ -72,7 +72,8 @@ Before describing the AES encryption, some key definitions need to be mentioned
 
 \subfile{definitions.tex}
 
-\chapter{Theory} \label{sec:theory}
+\chapter{Theory}
+\label{sec:theory}
 The AES encryption process can be divided in two different sections:
 \begin{itemize}
 \item Encryption process
@@ -84,46 +85,9 @@ In encryption process, an unencrypted data packet is encrypted using a cipher ke
 
 \subfile{key_schedule.tex}
 
-\chapter{Implementation Details}
-Approximately each section in chapter \ref{sec:theory} is translated into a separate VHDL component. Some components are in themselves also divided in subcomponents to make the code more easy to follow and manage. The complete and most up-to-date code is found on https://github.com/Risca/Fierce-Gravel.
-
-\begin{itemize}
-\item The \emph{Resources} Package
-\item Encryption Process
-\item Key Schedule
-\item Top Level Entities
-\item Test Benches
-\end{itemize}
-
-The \emph{resources} package was created to gather definitions of types, subtypes and components that is used throughout the project. This was done to simplify and generalize all components used.
-
-The section Top Level Entities describes how the different components described in the sections before are interconnected.
-
-In the section Test Benches, the various test benches used to test each component are described.
-
-\section{The resources package}
-The VHDL standard defines an elegant way to summarize all different types, subtypes, functions, components, etc. in what is called a \emph{package}. This project have two packages for all its parts --- The \emph{resources} and the \emph{variables} package.
-
-The \emph{resources} package contains type definitions, component declarations and a few functions.
-
-\lstinputlisting[firstline=7,
-                 firstnumber=7,
-                 lastline=26,
-                 label={list:constants},
-                 caption={FG\_package.vhd: Constants and type definitions}]
-{FG_package.vhd}
-
-\subfile{impl_encryption_process.tex}
-
-\subfile{impl_key_schedule.tex}
-
-\section{Top level entities}
-
-\section{Test benches}
-
+\subfile{implementation_details.tex}
 
 \chapter{Future improvements}
-
 
 \chapter{Conclusion}
 
