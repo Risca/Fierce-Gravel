@@ -7,8 +7,8 @@ Approximately each section in chapter \ref{sec:theory} is translated into a sepa
 Since almost each operation in chapter \ref{sec:theory} is a separate component and the fact that the source code available on-line is well commented, this section will only highlight the topics of the VHDL implementation that require investigation. These topics include:
 
 \begin{itemize}
-\item The \emph{Resources} and \emph{Variables} Packages
-\item Top Level Entities
+\item The \emph{Resources} package
+\item The \emph{Variables} Package
 \item Test Benches
 \end{itemize}
 
@@ -55,9 +55,27 @@ Listing \ref{list:func dec} and listing \ref{list:func def} show the function de
                  caption={FG\_package.vhd, function definitions}]
 {FG_package.vhd}
 %\end{figure}
+\subsection{\emph{Variables} package}
+This package is not part of \emph{resources} mostly for convenience. I gathers all the constants and variables needed throughout the project, and can be seen in listing \ref{list:variables}
 
-\section{Top level entities}
+%\begin{figure}[ht]
+\lstinputlisting[firstline=6,
+                 firstnumber=6,
+                 lastline=21,
+                 label={list:variables},
+                 caption={FG\_variables.vhd, Constants and variables used}]
+{FG_variables.vhd}
+%\end{figure}
 
 \section{Test benches}
+
+To facilitate testing of each component during this project, most components take at least a state\_array as an input and a state\_array as an output. Some components also accept a round\_key. This generalized input and output make it very easy to test each component, or even operator, individually.
+
+Three test benches are pre-made in the online sources
+\begin{itemize}
+\item AES\_enc.vhd -- For testing the encryption and it's components, subcomponents and operators
+\item AES\_dec.vhd -- For testing the decryption and it's components, subcomponents and operators
+\item KeySchExp.vhd -- For testing the key expansion
+\end{itemize}
 
 \end{document}
