@@ -1,7 +1,7 @@
 -- Title:			AES
 -- Date:				2011-11-28
 -- Author:			Daniel Josefsson
--- Description:	This test bench shall be used to test the main algorithm.
+-- Description:	This test bench shall be used to test the encryption algorithm.
 
 library ieee;
 use ieee.std_logic_1164.all;
