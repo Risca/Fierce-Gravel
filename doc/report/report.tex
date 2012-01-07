@@ -88,8 +88,21 @@ In encryption process, an unencrypted data packet is encrypted using a cipher ke
 \subfile{implementation_details.tex}
 
 \chapter{Future improvements}
+This implementation of the AES encryption is not without flaws. There are some parts that can be improved by further work. These parts include:
+\begin{itemize}
+\item The ability to send data, and then receive the encrypted/decrypted data, through the serial port.\footnote{It should be fairly easy to implement serial communication. Components for sending and receiving data is available, and tested, in the online sources. However, they are not used for the encryption/decryption processes at the time of writing.}
+\item A more pipelined algorithm to increase throughput.
+\item A more controlled encryption/decryption process. Signals should be available to indicate when the key expansion and the encryption/decryption process are complete.
+\item An even more secure pipelined algorithm by implementing e.g. cipher-block chaining.
+\item The current implementation can be further optimized for size and speed.
+\end{itemize}
 
 \chapter{Conclusion}
+The Advanced Encryption Standard is a widely used and trusted encryption standard with no known major weaknesses.\cite{attacks} It is fast, simple and very secure. It is used, among others, by the U.S. government to secure TOP SECRET information and can be considered the most widespread encryption standard used today.
+
+AES describes an iterating encryption/decryption process that is very simple and at the same time very fast. This makes it easy to implement and optimize the AES.
+
+The implementation described within this document and online (available at \url{https://github.com/Risca/Fierce-Gravel/}) show how a possible implementation using FPGA hardware can be achieved.
 
 %\section{Timeline}\label{timeline}
 %The timeline below is graded in number of weeks from project start
@@ -125,5 +138,15 @@ In encryption process, an unencrypted data packet is encrypted using a cipher ke
 %\end{tikzpicture}
 %\caption{Timeline in project weeks}
 %\end{figure}
+
+\begin{thebibliography}{9}
+
+\bibitem{fips}
+    \emph{FIPS PUB 197: the official AES standard}, 2001. Available from: \url{http://csrc.nist.gov/publications/fips/fips197/fips-197.pdf} [updated 7 January 2012]
+
+\bibitem{attacks}
+    Andrey Bogdanov, Dmitry Khovratovich, and Christian Rechberger, \emph{Biclique Cryptanalysis of the Full AES}, 2011. Available from: \url{http://research.microsoft.com/en-us/projects/cryptanalysis/aesbc.pdf} [updated 7 january 2012]
+
+\end{thebibliography}
 
 \end{document}
