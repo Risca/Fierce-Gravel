@@ -4,15 +4,7 @@
 In the AES standard, addition is performed bitwise with the XOR operator. No regard is taken to carry bits. Consequently, subtraction is identical to addition.
 
 \section{Multiplication}\label{sec:multiplication}
-In the AES standard, multiplication is performed by using the multiplication of polynomial modulo an irreducible polynomial of degree 8, GF$\left(2^{8}\right)$ 
-\begin{comment}
-	\cite[Sec.~4.2]{AES Standard}
-\end{comment}
-where GF is short for Rijndael's finite field or Galois field 
-\begin{comment}
-	\cite{GF} page = http://en.wikipedia.org/wiki/Rijndael_Galois_field#Rijndael.27s_finite_field, date=2011-11-14
-\end{comment}
-. this means that multiplication is performed by using addition defined in \ref{sec:addition} between the resulting terms and then dividing the result with a given polynomial.
+In the AES standard, multiplication is performed by using the multiplication of polynomial modulo an irreducible polynomial of degree 8, GF$\left(2^{8}\right)$ where GF is short for Rijndael's finite field or Galois field.\cite{fips}\cite{galois} This means that multiplication is performed by using addition defined in \ref{sec:addition} between the resulting terms and then dividing the result with a given polynomial.
 
 The polynomia used in the AES standard is
 \begin{equation} \label{eq:multiplication polynomial}
@@ -61,7 +53,7 @@ To calculate the number of rounds needed for a specific key length, (\ref{eq:rou
 where $A_l$ and $W_l$ denotes key length (128, 192 or 256 bit) and word length (32 bit) respectively.
 
 \section{Round key}
-For each round in the encryption process a different round key is used. In total there are $N_r+1$ round keys. More on this in section \ref{sec:theory}
+For each round in the encryption process a different round key is used. In total there are $N_r+1$ round keys. Section \ref{sec:theory} contain more information about round keys and how they are derived.
 
 \section{State block or state array}
 Data to be encrypted (input data) is copied to a state block. During intermediate encryption rounds, data is manipulated on the state block. After the final round the state block is copied to the output block.% See figure \ref{fig:state array}.

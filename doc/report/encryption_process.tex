@@ -73,7 +73,9 @@ As the last step, the state block is copied to the output block.
 \clearpage
 
 \subsection{Substitution using a substitution table}\label{sec:substitution}
-Each byte in a state block is represented by two hexadecimal digits. These two digits are then used as row and column index in the substitution table in figure \ref{fig:s-box}. E.g. the value $\textrm{42}_{10}$ is $\textrm{2A}_{16}$ in hexadecimal form and would be transformed to $\textrm{E5}_{16}$.
+Each byte in a state block is represented by two hexadecimal digits. These two digits are then used as row and column index in the substitution table in figure \ref{fig:s-box}.
+
+For example, the value $\textrm{42}_{10}$ is $\textrm{2A}_{16}$ in hexadecimal form and would be transformed to $\textrm{E5}_{16}$.
 
 \begin{figure}[ht]
 \centering
@@ -89,13 +91,13 @@ Row shifting means that each row in a state block is cyclically shifted left $N$
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=\linewidth]{row_shifting}
+\includegraphics[width=0.8\linewidth]{row_shifting}
 \caption{Illustration of row shifting.\cite{fips}}
 \label{fig:row_shifting}
 \end{figure}
 
 \subsection{Column mixing}
-The mix column transformation is done by multiplying each column by a given matrix as shown in equation \ref{eq:mix columns} below.
+The mix column transformation is done by multiplying, using the Galois Field multiplication described in section \ref{sec:multiplication}, each column by a given matrix as shown in equation \ref{eq:mix columns} below.
 \begin{equation}
 \label{eq:mix columns}
 	\begin{bmatrix}

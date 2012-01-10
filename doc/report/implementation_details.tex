@@ -4,7 +4,7 @@
 \label{chap:implementation details}
 Approximately each section in chapter \ref{sec:theory} is translated into a separate VHDL component. Some components are in themselves also divided in subcomponents to make the code more manageable. The complete and most up-to-date code is found on \url{https://github.com/Risca/Fierce-Gravel}.
 
-Since almost each operation in chapter \ref{sec:theory} is a separate component and the fact that the source code available on-line is well commented, this section will only highlight the topics of the VHDL implementation that require investigation. These topics include:
+Since almost each operation in chapter \ref{sec:theory} is a separate component and the fact that the source code available on-line is well commented, this section will only highlight the topics of the VHDL implementation that require further explanation. These topics include:
 
 \begin{itemize}
 \item The \emph{Resources} package
@@ -21,14 +21,14 @@ This package contains type and component declarations, and a few functions.
 The type definitions were introduced to make it clear what signals the input and outputs of each component are supposed to be fed.
 Listing \ref{list:typedefs} show the six different types used throughout the project.
 
-%\begin{figure}[ht]
+\begin{figure}[ht]
 \lstinputlisting[firstline=7,
                  firstnumber=7,
                  lastline=20,
                  label={list:typedefs},
                  caption={FG\_package.vhd, type definitions}]
 {FG_package.vhd}
-%\end{figure}
+\end{figure}
 
 The component declarations are not very informative to list here and the reader is therefore referred to the on-line source.
 
@@ -55,6 +55,7 @@ Listing \ref{list:func dec} and listing \ref{list:func def} show the function de
                  caption={FG\_package.vhd, function definitions}]
 {FG_package.vhd}
 %\end{figure}
+
 \subsection{\emph{Variables} package}
 This package is not part of \emph{resources} mostly for convenience. I gathers all the constants and variables needed throughout the project, and can be seen in listing \ref{list:variables}
 
@@ -77,5 +78,18 @@ Three test benches are pre-made in the online sources
 \item AES\_dec.vhd -- For testing the decryption and it's components, subcomponents and operators
 \item KeySchExp.vhd -- For testing the key expansion
 \end{itemize}
+
+The test benches have an input for selecting a few pre-programmed sets of input data. The data can be changed at compile-time. 
+
+All test benches also have outputs for viewing the output data on the 7-segment displays on the Altera DE2 development board. The 7-segment displays can display one column (four bytes) at a time. Two switches are used to select which column of the output that should be displayed.
+
+See figure \ref{fig:test bench overview} for a schematic overview on how the test benches work.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\linewidth]{test_bench}
+\caption{Test bench overview}
+\label{fig:test bench overview}
+\end{figure}
 
 \end{document}
